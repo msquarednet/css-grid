@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS Grid Image Gallery!</title>
+</head>
+
+<body>
+
+  <div class="overlay">
+    <div class="overlay-inner">
+      <button class="close">× Close</button>
+      <img>
+    </div>
+  </div>
+
+  <section class="gallery">
+    <!-- <div class="item h2 v3"><img src="images/1.jpg" alt=""></div>
+    <img src="images/1.jpg" alt="">
+    <img src="images/2.jpg" alt="">
+    <img src="images/3.jpg" alt="">
+    <img src="images/4.jpg" alt="">
+    <img src="images/5.jpg" alt="">
+    <img src="images/6.jpg" alt="">
+    <img src="images/7.jpg" alt="">
+    <img src="images/8.jpg" alt="">
+    <img src="images/9.jpg" alt="">
+    <img src="images/10.jpg" alt="">
+    <img src="images/11.jpg" alt="">
+    <img src="images/12.jpg" alt=""> -->
+  </section>
+
+
+  <style>
+    * {box-sizing: border-box;}
+    body {
+      padding: 50px;
+      font-family: sans-serif;
+      background: linear-gradient(to right, #F93D66, #6D47D9);
+    }
+    h1,h2,h3,h4,h5,h6 {      margin: 0 0 5px 0;    }
+    p {margin: 0 0 20px 0;}
+    img {width:100%;}
+
+
+    .close {
+      background: none;
+      color: black;
+      border: 0;
+    }
+
+    .gallery {
+      display:grid;
+      grid-template-columns: repeat(auto-fill, 100px);
+      grid-auto-rows:100px;
+      grid-auto-flow:dense;
+    }
+
+    .item {
+      overflow: hidden;
+      display: grid;
+      /* grid-template-columns: 1fr;
+      grid-template-rows: 1fr; */
+    }
+    .item img {
+      grid-column: 1 / -1;  /* child of item (grid) */
+      grid-row: 1 / -1;     /* child of item (grid) */
+      width: 100%;
+      height: 100%;
+      object-fit: cover;    /* object-position: center; */
+    }
+    .item .item__overlay {
+      grid-column: 1 / -1;  /* child of item (grid) */
+      grid-row: 1 / -1;     /* child of item (grid) */
+      background:#ffc60032; /* 70% transparent in hex */
+      display:grid;           /* used to center child button (which is stretched by default*/
+      justify-items: center;
+      align-items: center;
+      transform: translateY(100%);
+      transition: all 0.1s;
+    }
+    .item__overlay button {  
+      background:none;
+      border: solid 2px white;
+      color:white;
+      text-transform: uppercase;
+      background: rgba(0,0,0,0.5);
+      padding:5px;
+    }
+    .item:hover .item__overlay {
+      transform: translateY(0)
+    }
+    .h1 {grid-column: span 1;}
+    .h2 {grid-column: span 2;}
+    .h3 {grid-column: span 3;}
+    .h4 {grid-column: span 4;}
+    .v1 {grid-row: span 1;}
+    .v2 {grid-row: span 2;}
+    .v3 {grid-row: span 3;}
+    .v4 {grid-row: span 4;}
+
+    .overlay {
+      position: fixed;
+      background: rgba(0, 0, 0, 0.7);
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
+      z-index: 2;
+    }
+    .overlay.open {
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      /* place-items: center; */
+    }
+    .overlay-inner {
+      background: white;
+      width: 700px;
+      padding: 20px;
+    }
+    .overlay img {
+      width: 100%;
+    }
+  </style>
+
+  <script>
+    const gallery = document.querySelector('.gallery')
+    const overlay = document.querySelector('.overlay')
+    const overlayImage = document.querySelector('img')
+    const overlayClose = document.querySelector('.close')
+
+    function generateHTML([h,v]) {  //destructuring
+      return `<div class="item h${h} v${v}">
+                <img src="images/${rand(12)}.jpg">
+                <div class="item__overlay">
+                  <button>View</button>
+                </div>
+              </div>`;
+    }
+    function rand(limit) {return Math.ceil(Math.random()*limit)}
+    function handleClick(e) {      // console.log(e.currentTarget);      console.log(this);
+      const src = e.currentTarget.querySelector('img').src;
+      overlayImage.src = src;
+      overlay.classList.add('open')
+    }
+
+
+    //[[1,2], [2,4], [4,1]......]
+    // const arraydata = new Array(50).map(x => { ...no!
+    const arraydata = [...Array(20)].map((x,i) => {
+      return [rand(4), rand(4)];
+    }).concat([[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],
+      [1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]])
+      .map(generateHTML)
+      .join('')    // console.log(arraydata)
+  
+    gallery.innerHTML = arraydata;
+
+
+    const items = document.querySelectorAll('.item');
+    items.forEach(x => x.addEventListener('click', handleClick));
+
+    overlayClose.addEventListener('click', () => overlay.classList.remove('open'));
+  
+  </script>
+</body>
+
+</html>

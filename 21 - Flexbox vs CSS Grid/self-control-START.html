@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/style.css">
+  <title>Flexbox vs CSS Grid: Self Control!</title>
+</head>
+
+<body>
+  <!-- Self Contol on box Axis -->
+
+  <div class="v0 corners" style="float:right;">
+    <div class="corner item">1</div>
+    <div class="corner item">ZERO</div>
+    <div class="corner item">3</div>
+    <div class="corner item">4</div>
+  </div>
+  <div class="v1 corners">
+    <div class="corner item">1</div>
+    <div class="corner item">GRID</div>
+    <div class="corner item">3</div>
+    <div class="corner item">4</div>
+  </div>
+  <div class="v2 corners">
+    <div class="corner item">1</div>
+    <div class="corner item">FLEX</div>
+    <div class="corner item">3</div>
+    <div class="corner item">4</div>
+  </div>
+
+  <style>
+    .corners {
+      display: grid; margin:50px;
+      height: 200px;  width: 200px;
+      border: 10px solid var(--yellow);
+    }
+    .corner:nth-child(1),
+    .corner:nth-child(2) {}
+    .corner:nth-child(1),
+    .corner:nth-child(3) {}
+    
+    /* GRID */
+    .v1.corners {
+      display: grid; margin:50px;
+      height: 200px;  width: 200px;
+      border: 10px solid var(--yellow);
+      grid-template: auto auto / auto auto;
+      justify-items: end;
+      align-items: end
+    }
+    .v1 .corner:nth-child(1),
+    .v1 .corner:nth-child(2) {align-self:start;}
+    .v1 .corner:nth-child(1),
+    .v1 .corner:nth-child(3) {justify-self:start;}
+    
+    /* FLEX */
+    .v2.corners {
+      display: flex; margin:50px;
+      height: 200px;  width: 200px;
+      border: 10px solid var(--yellow);
+      justify-content: flex-end;
+      align-content: flex-end;
+      flex-wrap: wrap;
+    }
+    .v2 .corner:nth-child(1),
+    .v2 .corner:nth-child(2) {align-self: flex-start;}
+    .v2 .corner:nth-child(1),
+    .v2 .corner:nth-child(3) {???}
+  </style>
+</body>
+
+</html>

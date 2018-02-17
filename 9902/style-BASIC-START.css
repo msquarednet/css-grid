@@ -1,0 +1,32 @@
+html {
+  box-sizing: border-box;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+  font-weight: normal;
+  color: #272727;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+*, *:before, *:after {box-sizing: inherit;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal; margin:0; font-size:1.5em;}
+body {
+  margin: 0;
+}
+
+.wrapper {
+  margin:50px;
+  height:calc(100vh - 100px);
+  display:grid;
+  grid-gap: 20px;
+  grid-template-areas: 
+    "logo st st"
+    ".    nav2 nav2"
+    "nav pic txt"
+    ". . copyrite";
+  grid-template-rows: auto auto 1fr auto;
+}
+.logo {grid-area: logo;}
+.sitetitle {grid-area: st;}
+.pic {grid-area: pic;}
+.txt {grid-area: txt;}
+.nav {grid-area: nav;}
+.nav2 {grid-area: nav2;}
+.copyrite {grid-area: copyrite;}

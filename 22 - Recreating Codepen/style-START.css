@@ -1,0 +1,110 @@
+:root{
+  --grey:#343436;
+}
+html {
+  box-sizing: border-box;
+  font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Tahoma, Sans-Serif;
+  font-weight: normal;
+  color: #272727;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
+}
+*, *:before, *:after {box-sizing: inherit;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal; margin:0; font-size:1.5em;}
+body {
+  margin: 20px;
+  background:#eee;
+}
+/* wrapper */
+.codepen {
+  display: grid;
+  /* grid-gap: 10px; */
+  grid-template-rows: auto 1fr 1fr auto;
+  height:100vh;
+}
+.codepen>* {background: white;}
+
+
+ /* header */
+.pen { 
+  display: grid;
+  grid-gap: 10px;
+  grid-auto-flow:column;
+  align-items: center;
+
+  background:black;
+  border-bottom:5px solid var(--grey);
+  color:white;
+  padding:10px;
+}
+
+
+/* editor(s) region */
+.code {
+  display: grid;
+  /* grid-gap: 10px; */
+  grid-template-columns: repeat(3, 1fr);
+  background: #1b2b34; color:white;
+}
+
+editor {
+  display:grid;
+  /* height: 100%; */
+  grid-template-rows: auto 1fr;
+}
+
+.editor__header {
+  display:grid;
+  grid-gap:5px;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  padding:5px; color:white;
+  background: rgba(0, 0, 0, 0.2)
+}
+
+.editor__code {
+  display:grid;
+  grid-template-columns: auto 1fr;
+  height:100%;
+}
+.editor__number {display:block; padding:0 10px;}
+
+.editor__input {
+  resize: none;
+  background: none;
+  border: 0;
+  color: grey;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+
+
+.button {
+  background: var(--grey);
+  border:0;
+  color:white;
+  padding:10px;
+  border-radius: 5px;
+  font-size:15px;
+  position: relative; /* for 'dirty', below */
+}
+.button--small {font-size:12px; padding:4px;}
+.button--dirty:before {
+  background: #ffc600;
+  display:block;
+  content:'';
+  width:calc(100% - 6px); height:2px;  
+  position:absolute;
+  top:3px;  left:3px;   
+}
+
+/* preview */
+iframe {width:100%; height:100%;}
+
+
+/* footer */
+.settings {
+  padding:5px;
+  background: black;
+  border-top: 3px solid var(--grey);
+}

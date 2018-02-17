@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../assets/style.css">
+  <title>Flexbox vs CSS Grid: Perfectly Centered!</title>
+</head>
+
+<body>
+  <!-- Perfectly Centered Multiple Elements -->
+
+  <div class="v0 hero">
+    <h2>0 display not set.</h2>
+    <p>Get Ready...</p>
+  </div>
+  <div class="v1 hero">
+    <h2>1 display:flex</h2>
+    <p>Get Ready...</p>
+  </div>
+  <div class="v2 hero">
+    <h2>1 display:grid</h2>
+    <p>Get Ready...</p>
+  </div>
+
+  <style>
+    .v0.hero {
+      height: 100px; margin:10px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+    .v1.hero {
+      height: 100px; margin:10px;
+      background: rgba(255, 255, 255, 0.2);
+      display:flex;
+      flex-direction:column;
+      justify-content: center;
+      align-items:center;
+    }
+    .v2.hero {
+      height: 100px; margin:10px;
+      background: rgba(255, 255, 255, 0.2);
+      display: grid;
+      justify-items: center;
+      align-content: center;
+    }
+  </style>
+</body>
+
+</html>
